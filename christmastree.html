@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cemara</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		html, body {
+			height: 100%;
+			width: 100%;
+		}
+
+		body {
+			background-color: #3498DB;
+			position: relative;
+			font-size: 100%;
+		}
+
+		.wrapper-tree {
+			display: inline-block;
+			color: #fff;
+			position: fixed;
+			bottom: 0;
+			right: 0;
+			padding: 20px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="tree" class="wrapper-tree"></div>
+	<script>
+		var christmasTree = (function () {
+			'use strict';
+			var parent = document.getElementById('tree');
+			function initTree() {
+				var levels = 4,
+					levelsBody = [
+						[1, 2, 3],
+						[7, 8, 9],
+						[13, 14, 15],
+						[3, 3, 3]
+					],
+					lb,
+					lbLen,
+					i,
+					j,
+					k,
+					str = '*<br>';
+
+				for (i = 0; i < levels; i++) {
+					lb = levelsBody[i];
+					lbLen = lb.length;
+
+					for (j = 0; j < lbLen; j++) {
+
+						for (k = 0; k < lb[j]; k++) {
+							str += Math.round(Math.random());
+						}
+						str += '<br>';
+					}
+					
+				}
+
+				parent.innerHTML = str;
+			}
+
+			function init () {
+				if (parent) {
+					window.setInterval(initTree, 500);
+				}
+			}
+
+			return {init : init};
+		}());
+		window.addEventListener('load', christmasTree.init, false);
+	</script>
+</body>
+</html>
